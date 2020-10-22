@@ -47,6 +47,8 @@
 | address         | string     | null: false |
 | building_name   | string     |             |
 | phone_number    | string     | null: false |
+| user            | references | null: false, foreign_key: true|
+| product         | references | null: false, foreign_key: true|
 
 ### Association
 - belongs_to :purchase
