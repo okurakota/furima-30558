@@ -14,15 +14,15 @@
 | birth_day        | date   | null: false |
 
 ### Association
-- has_many :product
-- has_many :purchase
+- has_many :products
+- has_many :purchases
 
 
 ## productsテーブル
 
 | Column           | Type          | Options     |
 | ---------------- | ------------- | ----------- |
-| product_name     | string        | null: false |
+| name             | string        | null: false |
 | description      | text          | null: false |
 | category_id      | integer       | null: false |
 | status_id        | integer       | null: false |
@@ -33,15 +33,15 @@
 | user             | references    | null: false, foreign_key: true|
 
 ### Association
-- has_one_attached :user
-- has_one_attached :purchase
+- belongs_to :user
+- has_one :purchase
 
 
 ## addressテーブル
 
 | Column          | Type       | Options     |
 | --------------- | ---------- | ----------- |
-| postal_code_id  | string     | null: false |
+| postal_code     | string     | null: false |
 | prefectures_id  | string     | null: false |
 | municipalities  | string     | null: false |
 | address         | string     | null: false |
@@ -57,9 +57,9 @@
 | Column   | Type       | Options                       |
 | -------- | ---------- | ----------------------------- |
 | user     | references | null: false, foreign_key: true|
-| products | references | null: false, foreign_key: true|
+| product  | references | null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
 - belongs_to :product
-- has_one_attached :address
+- has_one :address
