@@ -1,0 +1,2 @@
+class ShoppingCost < ApplicationRecord
+end

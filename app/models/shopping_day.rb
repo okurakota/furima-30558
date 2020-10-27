@@ -1,0 +1,2 @@
+class ShoppingDay < ApplicationRecord
+end
