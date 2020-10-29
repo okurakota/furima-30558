@@ -60,17 +60,17 @@ RSpec.describe Product do
       it 'priceが¥300以下だと出品できない' do
         @product.price = '0'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price is not included in the list")
+        expect(@product.errors.full_messages).to include('Price is not included in the list')
       end
       it 'priceが¥9,999,999以上だと出品できない' do
         @product.price = '10000000'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price is not included in the list")
+        expect(@product.errors.full_messages).to include('Price is not included in the list')
       end
       it 'priceが半角数字以外だと出品できない' do
         @product.price = '９９９９９９９'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price is not included in the list")
+        expect(@product.errors.full_messages).to include('Price is not included in the list')
       end
     end
   end
