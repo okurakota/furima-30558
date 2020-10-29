@@ -1,15 +1,15 @@
 window.addEventListener('load', () => {
   const priceInput = document.getElementById("price");
-  priceInput.addEventListener("input", () => {
+  priceInput.addEventListener("turbolinks:input", () => {
 
     const inputValue = priceInput.value;
 
     const addTaxDom = document.getElementById("add-tax-price");
     addTaxDom.innerHTML = (Math.floor, inputValue * (0.1))
     
-      const addtaxValue = (Math.floor, inputValue * (0.1))
+      const taxValue = (Math.floor, inputValue * (0.1))
 
       const addProfitDom = document.getElementById("profit");
-      addProfitDom.innerHTML = inputValue - addtaxValue
+      addProfitDom.innerHTML = inputValue - taxValue
  })
 });

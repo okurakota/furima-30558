@@ -6,7 +6,8 @@ class Product < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :shopping_day
 
-  validates :name, :description, :price, presence: true
+  validates :image, :name, :description, :price, presence: true
+  validates :price, inclusion: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/, message: 'Price is not included in the list' }
 
   validates :category_id, numericality: { other_than: 1 }
   validates :status_id, numericality: { other_than: 1 }
