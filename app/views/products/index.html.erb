@@ -127,11 +127,11 @@
     <ul class='item-lists'>
      <% @products.each do |product| %>
       <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to product_path(product.id) do %>
         <div class='item-img-content'>
           <%= image_tag product.image, class: "item-img" if product.image.attached? %>
 
-          <%# //商品が売れていればsold outを表示しましょう %><%# 商品購入機能実装後に実装 %>
+          <%# 商品が売れていればsold outを表示しましょう %><%# 商品購入機能実装後に実装 %>
           <%# <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
