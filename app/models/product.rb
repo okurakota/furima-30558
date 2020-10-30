@@ -13,10 +13,10 @@ class Product < ApplicationRecord
   validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/, message: 'Price is not included in the list' }
 
   with_options numericality: { other_than: 1 } do
-  validates :category_id
-  validates :status_id
-  validates :shopping_cost_id
-  validates :prefecture_id
-  validates :shopping_day_id
+    validates :category_id
+    validates :status_id
+    validates :shopping_cost_id
+    validates :prefecture_id
+    validates :shopping_day_id
   end
 end
