@@ -1,6 +1,6 @@
 window.addEventListener('load', () => {
   const priceInput = document.getElementById("price");
-  priceInput.addEventListener("turbolinks:input", () => {
+  priceInput.addEventListener("input", () => {
 
     const inputValue = priceInput.value;
 
