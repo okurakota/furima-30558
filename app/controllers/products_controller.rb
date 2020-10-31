@@ -24,10 +24,18 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    unless current_user == @product.user
+      redirect_to root_path
+    end
   end
 
   def update
     @product = Product.find(params[:id])
+    if @product.update(product_params)
+      redirect_to product_path(@product)
+    else
+      render :edit
+    end
   end
 
   def destroy
