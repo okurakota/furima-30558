@@ -8,6 +8,7 @@ class Product < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
+  has_many :purchase
 
   validates :image, :name, :description, :price, presence: true
   validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/, message: 'Price is not included in the list' }
