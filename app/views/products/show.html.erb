@@ -28,10 +28,12 @@
      <% if user_signed_in? %>
        <% if current_user == @product.user %>
         <%= link_to '商品の編集', edit_product_path, method: :get, class: "item-red-btn" %>
-        <p class='or-text'>or</p>
+         <p class='or-text'>or</p>
           <%= link_to '削除', product_path, method: :delete, class:'item-destroy' %>
        <% else @product_id.present? %>
-        <%= link_to '購入画面に進む', product_purchases_path(@product.id), method: :get, class:"item-red-btn"%>
+         <% unless @product.purchase.present? %>
+          <%= link_to '購入画面に進む', product_purchases_path(@product.id), method: :get, class:"item-red-btn"%>
+         <% end %>
        <% end %>
      <% end %>
 
