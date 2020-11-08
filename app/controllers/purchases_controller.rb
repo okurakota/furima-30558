@@ -2,18 +2,16 @@ class PurchasesController < ApplicationController
   before_action :set_product, only: [:index, :create]
 
   def index
-  if @product.purchase.present?
-    redirect_to root_path 
-  else
-   if user_signed_in?
-    if current_user == @product.user
-      redirect_to root_path 
+    if @product.purchase.present?
+      redirect_to root_path
+    else
+      if user_signed_in?
+        redirect_to root_path if current_user == @product.user
+      else
+        redirect_to new_user_session_path
+      end
     end
-  else
-    redirect_to new_user_session_path
-   end
   end
- end
 
   def create
     @address_purchase = AddressPurchase.new(purchase_params)
@@ -33,12 +31,12 @@ class PurchasesController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
-      Payjp::Charge.create(
-        amount: @product.price,  # 商品の値段
-        card: purchase_params[:token],    # カードトークン
-        currency: 'jpy'                 # 通貨の種類（日本円）
-      )
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp::Charge.create(
+      amount: @product.price, # 商品の値段
+      card: purchase_params[:token], # カードトークン
+      currency: 'jpy'                 # 通貨の種類（日本円）
+    )
   end
 
   def set_product
