@@ -36,7 +36,7 @@ RSpec.describe AddressPurchase, type: :model do
       expect(@address_purchase.errors.full_messages).to include("Prefectures can't be blank")
     end
     it 'prefectures_idが1だと保存できないこと' do
-      @address_purchase.prefectures_id = '1'
+      @address_purchase.prefectures_id = 1
       @address_purchase.valid?
       expect(@address_purchase.errors.full_messages).to include('Prefectures must be other than 1')
     end
