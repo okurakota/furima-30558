@@ -1,15 +1,10 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
   before_action :set_product, only: [:index, :create]
 
   def index
-    if @product.purchase.present?
+    if @product.purchase.present? || current_user == @product.user
       redirect_to root_path
-    else
-      if user_signed_in?
-        redirect_to root_path if current_user == @product.user
-      else
-        redirect_to new_user_session_path
-      end
     end
   end
 

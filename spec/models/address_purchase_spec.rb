@@ -11,6 +11,10 @@ RSpec.describe AddressPurchase, type: :model do
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@address_purchase).to be_valid
     end
+    it 'building_nameが空でも保存できること' do
+      @address_purchase.building_name = nil
+      expect(@address_purchase).to be_valid
+    end
     it 'tokenが空だと保存できないこと' do
       @address_purchase.token = nil
       @address_purchase.valid?
@@ -51,7 +55,7 @@ RSpec.describe AddressPurchase, type: :model do
       @address_purchase.valid?
       expect(@address_purchase.errors.full_messages).to include("Phone number can't be blank")
     end
-    it 'phone_numberが11桁以上だと保存できないこと' do
+    it 'phone_numberが12桁以上だと保存できないこと' do
       @address_purchase.phone_number = '012345678910'
       @address_purchase.valid?
       expect(@address_purchase.errors.full_messages).to include('Phone number is invalid')
