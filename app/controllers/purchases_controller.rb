@@ -3,9 +3,8 @@ class PurchasesController < ApplicationController
   before_action :set_product, only: [:index, :create]
 
   def index
-    if @product.purchase.present? || current_user == @product.user
-      redirect_to root_path
-    end
+    @address_purchase = AddressPurchase.new
+    redirect_to root_path if @product.purchase.present? || current_user == @product.user
   end
 
   def create
@@ -22,7 +21,7 @@ class PurchasesController < ApplicationController
   private
 
   def purchase_params
-    params.permit(:postal_code, :prefectures_id, :municipalities, :address, :building_name, :phone_number, :purchase_id, :user_id, :product_id, :token).merge(user_id: current_user.id)
+    params.require(:address_purchase).permit(:postal_code, :prefectures_id, :municipalities, :address, :building_name, :phone_number, :purchase_id, :user_id).merge(user_id: current_user.id, product_id: params[:product_id], token: params[:token])
   end
 
   def pay_item
